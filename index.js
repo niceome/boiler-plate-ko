@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
+
+const config = require("./config/key");
 const { User } = require("./models/User");
 
 //application/x-www-form-urlencoded
@@ -12,9 +14,7 @@ app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(
-    "mongodb+srv://giyoung:limgiyoung7825@cluster0.vxn0g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(config.mongoURI)
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
